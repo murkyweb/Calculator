@@ -1,15 +1,28 @@
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-size: 40px;
+    min-height: 100vh;
+    background-color: #E2E8DD;
 }
 
 .container {
     display: flex;
     flex-direction: column;
+    margin-top: 130px;
+    width: 320px;
+    box-shadow:  -1px -1px 1px 1px #171D1C;
 }
 
 .top-side {
     text-align: end;
+    height: 50px;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: #EFE9F4;
+    color: #30343F;
 }
 
 .bottom-side {
@@ -26,6 +39,11 @@ button {
     box-sizing: border-box;
     width: 80px;
     height: 60px;
+    font-size: 24px;
+    background-color: #171D1C;
+    color: #EFE9F4;
+    border: none;
+    box-shadow: inset 1px 1px 1px 1px #EFE9F4;
 }
 
 .right-side {
@@ -34,6 +52,37 @@ button {
     width: 80px;
 }
 
-.right-side button {
-    height: 48px;
+#add {
+    height: 120px;
+}
+
+button:hover {
+    background-color: #F2545B;
+}
+
+button:active {
+    background-color: #A93F55;
+}
+
+.equal {
+    box-sizing: border-box;
+    width: 240px;
+    font-size: 36px;
+    background-color: #0496FF;
+}
+
+.clear {
+    background-color: #A93F55;
+}
+
+.footer {
+    font-size: 24px;
+    margin-top: auto;
+    margin-bottom: 10px;
+
+}
+
+.operator {
+    font-size: 36px;
+    background-color: #119DA4;
 }

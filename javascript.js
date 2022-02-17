@@ -19,8 +19,8 @@ const operate = (operator, a, b) => {
             break;
         case 'divide':
             if (a === 0 || b === 0) {
-                result = 'ERROR cannot divide by zero.';
-                break;
+                display.textContent = 'ERROR';
+                return result = 0;
             }
             result = divide(a, b);
     }
@@ -31,8 +31,8 @@ const operate = (operator, a, b) => {
 const numberButtons = document.querySelectorAll('#number');
 const operatorButtons = document.querySelectorAll('.operator');
 const display = document.querySelector('.top-side');
-const equalButton = document.querySelector('#equal');
-const clearButton = document.querySelector('#clear');
+const equalButton = document.querySelector('.equal');
+const clearButton = document.querySelector('.clear');
 const decimalButton = document.querySelector('#decimal');
 
 let numberArray = [];
@@ -42,11 +42,16 @@ let counter = 1;
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (counter) {
+        if (counter || display.textContent == '0') {
             counter = 0;
             display.textContent = '';   
         }
-        display.textContent = display.textContent + button.textContent;
+        if (display.textContent.length >= 13) {
+            display.textContent = display.textContent;
+        }
+        else {
+            display.textContent = display.textContent + button.textContent;
+        }
     });
 });
 

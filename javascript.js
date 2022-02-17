@@ -33,41 +33,39 @@ const operatorButtons = document.querySelectorAll('.operator');
 const display = document.querySelector('.top-side');
 const equalButton = document.querySelector('#equal');
 const clearButton = document.querySelector('#clear');
+const decimalButton = document.querySelector('#decimal');
 
 let numberArray = [];
 let operator = '';
 let result = 0;
-let counter = 0;
+let counter = 1;
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (display.textContent == result) {
-            display.textContent = '';
-            counter = 0;
-        }
-        else if (counter > 0) {
+        if (counter) {
             counter = 0;
             display.textContent = '';   
         }
         display.textContent = display.textContent + button.textContent;
-        displayValue = Number(display.textContent);
     });
 });
 
 operatorButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        
+    button.addEventListener('click', () => { 
+        displayValue = Number(display.textContent);
         numberArray.push(displayValue);
+        //checks if there are enough numbers in the array to start operation.
         if (numberArray.length === 2) {
             result = numberArray.reduce(
                 (a, b) => operate(operator, a, b)
             );
+        //empties the array and puts the result from previous operation in the array.
             numberArray = [];
             numberArray.push(result);
             display.textContent = result;
         }
         operator = button.id;
-        counter = counter + 1;
+        counter = 1;
     });
 });
 
@@ -80,12 +78,23 @@ equalButton.addEventListener('click', () => {
     numberArray = [];
     display.textContent = result;
     displayValue = result;
+    counter = 1;
 });
 
 clearButton.addEventListener('click', () => {
     numberArray = [];
     operator = '';
     result = 0;
+    counter = 1;
     display.textContent = '0';
-    displayValue = result;
+});
+
+decimalButton.addEventListener('click', (e) => {
+    if (display.textContent.includes('.')) {
+        display.textContent = display.textContent;
+    } 
+    else {
+        display.textContent = display.textContent + decimalButton.textContent;
+    } 
+    counter = 0;
 });
